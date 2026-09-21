@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #f7f4fd;
+    background-image: 
+      radial-gradient(at 10% 10%, rgba(238, 218, 255, 0.45) 0px, transparent 50%),
+      radial-gradient(at 90% 15%, rgba(254, 219, 240, 0.4) 0px, transparent 50%),
+      radial-gradient(at 50% 85%, rgba(254, 239, 215, 0.35) 0px, transparent 50%),
+      radial-gradient(at 80% 80%, rgba(220, 235, 254, 0.3) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: #1e1b4b;
+    font-family: var(--font-cairo), 'Cairo', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-cairo {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* Custom sleek soft scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1edfa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+/* Ensure all clickable buttons and interactive elements have pointer cursor */
+button,
+a,
+select,
+input[type="submit"],
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+
