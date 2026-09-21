@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Search, Bell, Shield, Calendar, Sparkles } from 'lucide-react';
+import { Search, Bell, Shield, Calendar, Sparkles, Menu } from 'lucide-react';
 import { NotificationsPopover } from './NotificationsPopover';
 import { RoleSwitcherModal } from './RoleSwitcherModal';
 
@@ -10,29 +10,43 @@ interface Props {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   onSelectRep?: (repId: string) => void;
+  onToggleMobileMenu?: () => void;
 }
 
-export const Header: React.FC<Props> = ({ searchQuery, setSearchQuery, onSelectRep }) => {
+export const Header: React.FC<Props> = ({ searchQuery, setSearchQuery, onSelectRep, onToggleMobileMenu }) => {
   const { currentUser } = useAuth();
   const [showNotifs, setShowNotifs] = useState(false);
   const [showRoleModal, setShowRoleModal] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 bg-white/40 backdrop-blur-xl border-b border-purple-100/60 px-6 py-4 flex items-center justify-between gap-4">
-      {/* Search Input - WalIQ Pill Style */}
-      <div className="flex-1 max-w-md relative">
-        <Search className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="ابحث عن مندوب، منطقة، صيدلية، أو صنف..."
-          className="w-full bg-white/90 border border-purple-100/80 rounded-full pr-11 pl-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 shadow-sm transition-all text-right font-medium"
-        />
+    <header className="sticky top-0 z-30 bg-white/60 backdrop-blur-xl border-b border-purple-100/60 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
+      {/* Mobile Hamburger & Search Bar */}
+      <div className="flex items-center gap-2 flex-1 max-w-md">
+        {onToggleMobileMenu && (
+          <button
+            onClick={onToggleMobileMenu}
+            className="p-2.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-purple-50 hover:text-purple-600 transition-colors md:hidden shrink-0 shadow-sm"
+            title="القائمة"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
+
+        {/* Search Input - WalIQ Pill Style */}
+        <div className="flex-1 relative">
+          <Search className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="ابحث عن مندوب، منطقة..."
+            className="w-full bg-white/90 border border-purple-100/80 rounded-full pr-10 pl-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 shadow-sm transition-all text-right font-medium"
+          />
+        </div>
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
         {/* Date & Shift Widget */}
         <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-purple-100/80 text-xs text-slate-700 shadow-sm">
           <Calendar className="w-3.5 h-3.5 text-purple-600" />
@@ -44,18 +58,20 @@ export const Header: React.FC<Props> = ({ searchQuery, setSearchQuery, onSelectR
         {/* Quick Role Switcher Button */}
         <button
           onClick={() => setShowRoleModal(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 border border-purple-200 text-purple-700 hover:bg-purple-200/80 transition-all text-xs font-extrabold shadow-sm"
+          className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full bg-purple-100/80 border border-purple-200 text-purple-700 hover:bg-purple-200/80 transition-all text-xs font-extrabold shadow-sm cursor-pointer"
         >
-          <Shield className="w-3.5 h-3.5 text-purple-600" />
-          <span>الدور: {currentUser?.roleTitle.split(' ')[0]}</span>
-          <Sparkles className="w-3 h-3 text-purple-500 animate-pulse" />
+          <Shield className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+          <span className="truncate max-w-[90px] sm:max-w-none">
+            الدور: {currentUser?.roleTitle.split(' ')[0]}
+          </span>
+          <Sparkles className="w-3 h-3 text-purple-500 animate-pulse hidden sm:inline-block" />
         </button>
 
         {/* Notifications Dropdown */}
         <div className="relative">
           <button
             onClick={() => setShowNotifs(!showNotifs)}
-            className="p-2.5 rounded-full bg-white border border-slate-200/80 text-slate-600 hover:text-purple-600 hover:border-purple-200 transition-all relative shadow-sm"
+            className="p-2 sm:p-2.5 rounded-full bg-white border border-slate-200/80 text-slate-600 hover:text-purple-600 hover:border-purple-200 transition-all relative shadow-sm cursor-pointer"
             title="الإشعارات"
           >
             <Bell className="w-4 h-4" />
@@ -72,13 +88,13 @@ export const Header: React.FC<Props> = ({ searchQuery, setSearchQuery, onSelectR
 
         {/* Profile Avatar */}
         {currentUser && (
-          <div className="flex items-center gap-3 pr-2 border-r border-purple-100/80">
+          <div className="flex items-center gap-2.5 pr-2 border-r border-purple-100/80">
             <img
               src={currentUser.avatar}
               alt={currentUser.name}
-              className="w-10 h-10 rounded-full object-cover border-2 border-purple-500 shadow-md shadow-purple-500/20"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-purple-500 shadow-md shadow-purple-500/20 shrink-0"
             />
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <p className="text-xs font-black text-slate-900 leading-tight">{currentUser.name}</p>
               <p className="text-[10px] text-purple-600 font-bold">{currentUser.department}</p>
             </div>
@@ -90,3 +106,4 @@ export const Header: React.FC<Props> = ({ searchQuery, setSearchQuery, onSelectR
     </header>
   );
 };
+

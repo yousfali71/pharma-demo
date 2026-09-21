@@ -14,7 +14,7 @@ import { FinancePortal } from '../components/FinancePortal';
 import { MOCK_REPRESENTATIVES } from '../mock/repsData';
 import { MedicalRep } from '../types/pharma';
 import { useRouter } from 'next/navigation';
-import { Users, Building2, Stethoscope, ShieldCheck, Save } from 'lucide-react';
+import { Stethoscope, ShieldCheck, Save } from 'lucide-react';
 
 export default function DashboardPage() {
   const { currentUser, isSuperAdmin, isSalesManager, isMedicalRep, isInventoryOfficer, isFinanceOfficer } = useAuth();
@@ -38,6 +38,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState(getDefaultTab());
   const [selectedRep, setSelectedRep] = useState<MedicalRep | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setActiveTab(getDefaultTab());
@@ -47,8 +48,13 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen text-slate-900 flex flex-col md:flex-row font-cairo selection:bg-purple-500 selection:text-white">
-      {/* Sidebar Navigation */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* Sidebar Navigation (Desktop + Mobile Drawer) */}
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isOpenMobile={isMobileMenuOpen}
+        onCloseMobile={() => setIsMobileMenuOpen(false)}
+      />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
@@ -56,6 +62,7 @@ export default function DashboardPage() {
         <Header
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           onSelectRep={(repId) => {
             const found = MOCK_REPRESENTATIVES.find((r) => r.id === repId);
             if (found) setSelectedRep(found);
@@ -63,7 +70,7 @@ export default function DashboardPage() {
         />
 
         {/* Dashboard Body Content */}
-        <main className="p-6 flex-1 overflow-y-auto max-w-7xl mx-auto w-full">
+        <main className="p-3 sm:p-6 flex-1 overflow-y-auto max-w-7xl mx-auto w-full">
           {activeTab === 'overview' && (
             <SuperAdminOverview
               reps={MOCK_REPRESENTATIVES}
@@ -90,24 +97,24 @@ export default function DashboardPage() {
 
           {/* CRM & Doctors Directory Tab */}
           {activeTab === 'crm' && (
-            <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 space-y-6 animate-in fade-in">
+            <div className="p-4 sm:p-6 rounded-[24px] sm:rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 space-y-6 animate-in fade-in">
               <div className="flex items-center gap-3 border-b border-purple-100/60 pb-4">
-                <div className="p-3 rounded-2xl bg-purple-50 text-purple-600">
+                <div className="p-3 rounded-2xl bg-purple-50 text-purple-600 shrink-0">
                   <Stethoscope className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-slate-900">شبكة CRM والكوادر الطبية</h2>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900">شبكة CRM والكوادر الطبية</h2>
                   <p className="text-xs text-slate-400 font-semibold">دليل عيادات القلب، الأعصاب والأطفال المستهدفة</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {[
                   { name: 'مركز د. علي لجراحة العظام', specialty: 'جراحة عظام', area: 'مدينة نصر', visits: '١٢ زيارة/شهر' },
                   { name: 'سلسلة صيدليات العزبي', specialty: 'صيدلية تجزئة', area: 'المعادي', visits: '٢٨ طلب/شهر' },
                   { name: 'د. يوسف لأمراض القلب', specialty: 'أمراض القلب', area: 'دجلة', visits: '٨ زيارات/شهر' },
                 ].map((item, idx) => (
-                  <div key={idx} className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-100">
                     <h3 className="font-extrabold text-slate-900 text-sm text-right">{item.name}</h3>
                     <p className="text-xs text-purple-600 font-bold mt-1 text-right">{item.specialty} • {item.area}</p>
                     <span className="inline-block mt-3 text-[10px] bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-bold">
@@ -121,13 +128,13 @@ export default function DashboardPage() {
 
           {/* Settings Tab */}
           {activeTab === 'settings' && (
-            <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 space-y-6 animate-in fade-in">
+            <div className="p-4 sm:p-6 rounded-[24px] sm:rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 space-y-6 animate-in fade-in">
               <div className="flex items-center gap-3 border-b border-purple-100/60 pb-4">
-                <div className="p-3 rounded-2xl bg-purple-50 text-purple-600">
+                <div className="p-3 rounded-2xl bg-purple-50 text-purple-600 shrink-0">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-slate-900">إعدادات النظام والتفويضات</h2>
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900">إعدادات النظام والتفويضات</h2>
                   <p className="text-xs text-slate-400 font-semibold">ضبط حدود مخاطر العهدة المالية وقواعد تتبع GPS</p>
                 </div>
               </div>
@@ -152,7 +159,7 @@ export default function DashboardPage() {
                     <option>كل 5 دقائق (قياسي)</option>
                   </select>
                 </div>
-                <button className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs shadow-md shadow-purple-500/20 flex items-center gap-2">
+                <button className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs shadow-md shadow-purple-500/20 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer">
                   <Save className="w-4 h-4" /> حفظ الإعدادات
                 </button>
               </div>
@@ -166,3 +173,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

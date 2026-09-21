@@ -3,8 +3,8 @@ import { User } from '../types/pharma';
 export const DEMO_USERS: User[] = [
   {
     id: 'usr-superadmin',
-    name: 'د. ألكسندر رايت',
-    email: 'a.wright@pharmapulse.com',
+    name: 'د. أحمد المحمدي',
+    email: 'a.elmohamady@pharmapulse.com',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80',
     role: 'SUPER_ADMIN',
     roleTitle: 'المدير التنفيذي والمشرف العام على النظام',
@@ -13,8 +13,8 @@ export const DEMO_USERS: User[] = [
   },
   {
     id: 'usr-manager',
-    name: 'د. ماركوس فانس',
-    email: 'm.vance@pharmapulse.com',
+    name: 'د. حازم الصاوي',
+    email: 'h.elsawy@pharmapulse.com',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80',
     role: 'SALES_MANAGER',
     roleTitle: 'مدير المبيعات والتجاريات الإقليمية',
@@ -35,8 +35,8 @@ export const DEMO_USERS: User[] = [
   },
   {
     id: 'usr-inventory',
-    name: 'سارة جنكينز',
-    email: 's.jenkins@pharmapulse.com',
+    name: 'م. سارة عبد الرحمن',
+    email: 's.abdelrahman@pharmapulse.com',
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=250&q=80',
     role: 'INVENTORY_OFFICER',
     roleTitle: 'مسؤولة سلسلة التوريد ومخزون السيارات',
@@ -45,8 +45,8 @@ export const DEMO_USERS: User[] = [
   },
   {
     id: 'usr-finance',
-    name: 'خالد عمر',
-    email: 'k.omar@pharmapulse.com',
+    name: 'أ. خالد عمر النجار',
+    email: 'k.elnaggar@pharmapulse.com',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=250&q=80',
     role: 'FINANCE_OFFICER',
     roleTitle: 'مسؤول الخزينة وتسوية النقدية',
@@ -54,3 +54,4 @@ export const DEMO_USERS: User[] = [
     employeeCode: 'EMP-150',
   },
 ];
+

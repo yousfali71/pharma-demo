@@ -82,23 +82,23 @@ export const RepTable: React.FC<Props> = ({ reps, searchQuery, setSearchQuery, o
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-md border border-purple-100/60 rounded-[28px] shadow-sm shadow-purple-900/5 overflow-hidden">
+    <div className="bg-white/90 backdrop-blur-md border border-purple-100/60 rounded-[20px] sm:rounded-[28px] shadow-sm shadow-purple-900/5 overflow-hidden">
       {/* Table Toolbar / Controls */}
-      <div className="p-6 border-b border-purple-100/60 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-purple-50/40">
+      <div className="p-4 sm:p-6 border-b border-purple-100/60 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 bg-purple-50/40">
         <div>
-          <h2 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+          <h2 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
             تتبع القوة الميدانية — المناديب بلحظية فورية
           </h2>
-          <p className="text-xs text-slate-500 font-semibold">
+          <p className="text-[11px] sm:text-xs text-slate-500 font-semibold mt-0.5">
             مراقبة {sortedReps.length} مندوب — الزيارات اليومية، عهدة المخزون وتسوية النقدية
           </p>
         </div>
 
         {/* Filter Dropdowns */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {/* Territory Filter */}
-          <div className="flex items-center gap-2 bg-white border border-purple-100 px-3.5 py-2 rounded-full text-xs shadow-sm">
-            <Filter className="w-3.5 h-3.5 text-purple-600" />
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-white border border-purple-100 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs shadow-sm">
+            <Filter className="w-3.5 h-3.5 text-purple-600 shrink-0" />
             <select
               value={selectedTerritory}
               onChange={(e) => setSelectedTerritory(e.target.value)}
@@ -113,7 +113,7 @@ export const RepTable: React.FC<Props> = ({ reps, searchQuery, setSearchQuery, o
           </div>
 
           {/* Status Filter */}
-          <div className="flex items-center gap-2 bg-white border border-purple-100 px-3.5 py-2 rounded-full text-xs shadow-sm">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-white border border-purple-100 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs shadow-sm">
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}

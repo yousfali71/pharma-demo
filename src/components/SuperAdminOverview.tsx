@@ -47,20 +47,20 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
   ];
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
       {/* Top Main Grid Layout - WalIQ 2-Column Responsive Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         {/* Left Main Column (WalIQ Dashboard & Income Grid) */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-4 sm:space-y-6">
           {/* Header Greeting */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-black text-slate-900 tracking-tight">الرئيسية</h1>
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">الرئيسية</h1>
               <p className="text-xs text-slate-500 font-semibold">مرحباً بك، المشرف العام - مركز تتبع القوة الميدانية</p>
             </div>
             <button
               onClick={() => onSelectTab('field-force')}
-              className="px-4 py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-500/20 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-500/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer w-full sm:w-auto"
             >
               <span>متابعة الخريطة</span>
               <ArrowUpLeft className="w-3.5 h-3.5" />
@@ -68,30 +68,30 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
           </div>
 
           {/* WalIQ Gradient Credit Card */}
-          <div className="p-7 rounded-[28px] bg-gradient-to-tr from-[#a855f7] via-[#6366f1] to-[#06b6d4] text-white shadow-2xl shadow-indigo-500/25 relative overflow-hidden group">
+          <div className="p-5 sm:p-7 rounded-[24px] sm:rounded-[28px] bg-gradient-to-tr from-[#a855f7] via-[#6366f1] to-[#06b6d4] text-white shadow-xl shadow-indigo-500/25 relative overflow-hidden group">
             {/* Background glowing circle overlays */}
             <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
             <div className="absolute right-10 top-0 w-32 h-32 bg-cyan-300/20 rounded-full blur-lg pointer-events-none"></div>
             
-            <div className="flex justify-between items-start mb-8 relative z-10">
+            <div className="flex justify-between items-start mb-6 sm:mb-8 relative z-10">
               <div>
-                <span className="text-xs font-bold text-white/80 uppercase tracking-widest block mb-1">بطاقة العهدة والمبيعات</span>
-                <span className="text-[11px] font-mono bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-semibold">
+                <span className="text-[11px] sm:text-xs font-bold text-white/80 uppercase tracking-widest block mb-1">بطاقة العهدة والمبيعات</span>
+                <span className="text-[10px] sm:text-[11px] font-mono bg-white/20 backdrop-blur-md px-3 py-0.5 rounded-full text-white font-semibold">
                   00/26
                 </span>
               </div>
               <div className="flex items-center gap-1.5 opacity-90">
-                <div className="w-7 h-7 rounded-full bg-white/30 backdrop-blur-md"></div>
-                <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-md -mr-3"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/30 backdrop-blur-md"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 backdrop-blur-md -mr-3"></div>
               </div>
             </div>
 
-            <div className="my-6 relative z-10">
+            <div className="my-4 sm:my-6 relative z-10">
               <p className="text-xs text-white/75 font-semibold">إجمالي المبيعات النشطة</p>
-              <div className="text-3xl font-black tracking-wider font-mono mt-1">
-                {fmt(totalDailyRevenue + totalStockLiquidity)} <span className="text-base font-bold">ج.م</span>
+              <div className="text-2xl sm:text-3xl font-black tracking-wider font-mono mt-1">
+                {fmt(totalDailyRevenue + totalStockLiquidity)} <span className="text-sm sm:text-base font-bold">ج.م</span>
               </div>
-              <p className="text-[11px] font-mono text-white/80 mt-2 tracking-widest">
+              <p className="text-[10px] sm:text-[11px] font-mono text-white/80 mt-2 tracking-widest">
                 4354 1123 6432 7889
               </p>
             </div>
@@ -99,75 +99,75 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
             <div className="flex justify-between items-end pt-4 border-t border-white/15 relative z-10 text-xs">
               <div>
                 <p className="text-[10px] text-white/70 font-medium">حامل البطاقة</p>
-                <p className="font-extrabold text-white text-sm">أحمد منصور (المدير الإقليمي)</p>
+                <p className="font-extrabold text-white text-xs sm:text-sm">أحمد منصور (المدير الإقليمي)</p>
               </div>
-              <span className="bg-white/20 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full font-bold">
+              <span className="bg-white/20 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full font-bold">
                 نشط الآن
               </span>
             </div>
           </div>
 
-          {/* WalIQ Income Sub-Cards Grid (2x2) */}
+          {/* WalIQ Income Sub-Cards Grid (Responsive 1 col on mobile, 2 col on tablet+) */}
           <div>
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-sm font-extrabold text-slate-800">مؤشرات الأداء والسداد</h2>
-              <button onClick={() => onSelectTab('financials')} className="text-xs text-purple-600 font-bold hover:underline">
+              <button onClick={() => onSelectTab('financials')} className="text-xs text-purple-600 font-bold hover:underline cursor-pointer">
                 عرض المزيد
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Card 1 */}
-              <div className="p-5 rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
-                <div className="flex justify-between items-center mb-3">
+              <div className="p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
+                <div className="flex justify-between items-center mb-2 sm:mb-3">
                   <span className="text-xs font-bold text-slate-400">مبيعات اليوم</span>
-                  <div className="p-2.5 rounded-2xl bg-purple-50 text-purple-600">
+                  <div className="p-2 sm:p-2.5 rounded-2xl bg-purple-50 text-purple-600">
                     <ShoppingBag className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-xl font-black text-slate-900">{fmt(totalDailyRevenue)} ج.م</div>
+                <div className="text-lg sm:text-xl font-black text-slate-900">{fmt(totalDailyRevenue)} ج.م</div>
                 <span className="inline-block mt-2 text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">
                   +12.4% هذا الأسبوع
                 </span>
               </div>
 
               {/* Card 2 */}
-              <div className="p-5 rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
-                <div className="flex justify-between items-center mb-3">
+              <div className="p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
+                <div className="flex justify-between items-center mb-2 sm:mb-3">
                   <span className="text-xs font-bold text-slate-400">عهدة السيارات</span>
-                  <div className="p-2.5 rounded-2xl bg-indigo-50 text-indigo-600">
+                  <div className="p-2 sm:p-2.5 rounded-2xl bg-indigo-50 text-indigo-600">
                     <Layers className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-xl font-black text-slate-900">{fmt(totalStockLiquidity)} ج.م</div>
+                <div className="text-lg sm:text-xl font-black text-slate-900">{fmt(totalStockLiquidity)} ج.م</div>
                 <span className="inline-block mt-2 text-[10px] text-indigo-600 font-bold bg-indigo-50 px-2 py-0.5 rounded-full">
                   مخزون مسجل
                 </span>
               </div>
 
               {/* Card 3 */}
-              <div className="p-5 rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
-                <div className="flex justify-between items-center mb-3">
+              <div className="p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
+                <div className="flex justify-between items-center mb-2 sm:mb-3">
                   <span className="text-xs font-bold text-slate-400">مخاطر النقدية</span>
-                  <div className="p-2.5 rounded-2xl bg-amber-50 text-amber-600">
+                  <div className="p-2 sm:p-2.5 rounded-2xl bg-amber-50 text-amber-600">
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-xl font-black text-amber-600">{fmt(totalCashRisk)} ج.م</div>
+                <div className="text-lg sm:text-xl font-black text-amber-600">{fmt(totalCashRisk)} ج.م</div>
                 <span className="inline-block mt-2 text-[10px] text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-full">
                   في انتظار الإيداع
                 </span>
               </div>
 
               {/* Card 4 */}
-              <div className="p-5 rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
-                <div className="flex justify-between items-center mb-3">
+              <div className="p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5 hover:shadow-md transition-all">
+                <div className="flex justify-between items-center mb-2 sm:mb-3">
                   <span className="text-xs font-bold text-slate-400">القوة النشطة</span>
-                  <div className="p-2.5 rounded-2xl bg-cyan-50 text-cyan-600">
+                  <div className="p-2 sm:p-2.5 rounded-2xl bg-cyan-50 text-cyan-600">
                     <Users className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-xl font-black text-slate-900">{totalReps} مناديب</div>
+                <div className="text-lg sm:text-xl font-black text-slate-900">{totalReps} مناديب</div>
                 <span className="inline-block mt-2 text-[10px] text-cyan-600 font-bold bg-cyan-50 px-2 py-0.5 rounded-full">
                   تغطية ١٠٠٪
                 </span>
@@ -177,26 +177,26 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
         </div>
 
         {/* Right Main Column (WalIQ Balance Graph & Transaction History) */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-4 sm:space-y-6">
           {/* WalIQ Smooth Spline Chart Card ("My Balance") */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5">
+          <div className="p-4 sm:p-6 rounded-[24px] sm:rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-xs text-slate-400 font-bold">الرصيد والسيولة</p>
-                <h3 className="text-2xl font-black text-purple-700 mt-0.5">
-                  {fmt(totalDailyRevenue + totalStockLiquidity)} <span className="text-sm font-bold text-slate-500">ج.م</span>
+                <h3 className="text-xl sm:text-2xl font-black text-purple-700 mt-0.5">
+                  {fmt(totalDailyRevenue + totalStockLiquidity)} <span className="text-xs sm:text-sm font-bold text-slate-500">ج.م</span>
                 </h3>
               </div>
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 text-xs font-bold border border-purple-100">
+              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 text-xs font-bold border border-purple-100 cursor-pointer">
                 <span>شهرياً</span>
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
             </div>
 
             {/* Smooth Spline SVG Line Graph */}
-            <div className="h-44 w-full relative mt-6">
+            <div className="h-40 sm:h-44 w-full relative mt-4 sm:mt-6">
               {/* Tooltip Overlay */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-3 py-1 rounded-xl text-[11px] font-bold shadow-lg flex items-center gap-1 z-20">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-3 py-1 rounded-xl text-[11px] font-bold shadow-lg flex items-center gap-1 z-20 whitespace-nowrap">
                 <span>التحصيل:</span>
                 <span className="text-purple-400 font-mono">28,450 ج.م</span>
               </div>
@@ -241,22 +241,22 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
           </div>
 
           {/* WalIQ Transaction History List */}
-          <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5">
+          <div className="p-4 sm:p-6 rounded-[24px] sm:rounded-[28px] bg-white/90 backdrop-blur-md border border-purple-100/60 shadow-sm shadow-purple-900/5">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-extrabold text-slate-800">سجل النشاط المالي الميداني</h3>
-              <button className="flex items-center gap-1 text-xs text-purple-600 font-bold hover:underline">
+              <button className="flex items-center gap-1 text-xs text-purple-600 font-bold hover:underline cursor-pointer">
                 <span>ترتيب حسب</span>
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {recentTransactions.map((tx, idx) => {
                 const Icon = tx.icon;
                 return (
                   <div key={idx} className="flex items-center justify-between p-2.5 hover:bg-purple-50/50 rounded-2xl transition-all">
                     <div className="flex items-center gap-3">
-                      <div className={`p-3 rounded-2xl ${tx.color}`}>
+                      <div className={`p-2.5 sm:p-3 rounded-2xl ${tx.color} shrink-0`}>
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
@@ -264,7 +264,7 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
                         <p className="text-[10px] text-slate-400 font-medium mt-0.5">{tx.date}</p>
                       </div>
                     </div>
-                    <span className="text-xs font-black text-slate-800 font-mono">{tx.amount}</span>
+                    <span className="text-xs font-black text-slate-800 font-mono shrink-0 mr-2">{tx.amount}</span>
                   </div>
                 );
               })}
@@ -275,3 +275,4 @@ export const SuperAdminOverview: React.FC<Props> = ({ reps, onSelectTab, onSelec
     </div>
   );
 };
+
